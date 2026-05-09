@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "khmer-g2p-neural"
+version = "0.5.0"
+description = "Neural (Transformer) grapheme-to-phoneme conversion for Khmer, producing IPA."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Panha" }]
+license = { text = "MIT" }
+dependencies = [
+    "torch>=2.0",
+    "tqdm>=4.60",
+]
+
+[project.optional-dependencies]
+notebook = ["matplotlib>=3.6", "seaborn>=0.12", "pandas>=2.0", "numpy>=1.23", "jupyter"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+khmer-g2p-train    = "khmer_g2p.neural.cli:train_main"
+khmer-g2p-predict  = "khmer_g2p.neural.cli:predict_main"
+khmer-g2p-finetune = "khmer_g2p.neural.cli:finetune_main"
+khmer-g2p-pretrain = "khmer_g2p.neural.cli:pretrain_main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+khmer_g2p = ["../data/*.tsv"]

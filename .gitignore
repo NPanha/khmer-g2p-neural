@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+*.egg-info/
+build/
+dist/
+
+.venv/
+venv/
+env/
+
+.ipynb_checkpoints/
+
+# Model weights are too large for regular GitHub pushes.
+*.pt

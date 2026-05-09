@@ -1,0 +1,90 @@
+Lexicon: data/lexicon.tsv
+Total rows loaded: 69177
+
+========================================================================
+1. Exact-duplicate rows: 0
+========================================================================
+
+========================================================================
+2. Words with >3 distinct pronunciations: 0
+========================================================================
+
+========================================================================
+3. Rows with leading/trailing whitespace: 0
+========================================================================
+
+========================================================================
+4. Rows with empty/missing fields: 0
+========================================================================
+
+========================================================================
+5. Words whose variants differ only in stress 'ˈ': 0
+========================================================================
+
+========================================================================
+6. Rare phonemes (≤3 occurrences): 0
+========================================================================
+
+========================================================================
+7. Char-level tokens outside the reference inventory: 0
+========================================================================
+
+========================================================================
+7b. Space-separated phoneme units outside inventory: 0
+========================================================================
+
+========================================================================
+8. Longest IPA strings (top 40)
+========================================================================
+  len= 82  អេសូផាហ្គោហ្គាស្ត្រូឌូដេណូស្កូភី	ʔ ee . s oo . ph aa . g ao . g aa . s t r oo . ɗ uu . ɗ ee . n oo . s k oo . ph ii
+  len= 78  សមុច្ចយត្ថវាចកនិបាត	s a ʔ . m u c . c a ʔ . j a t . th a ʔ . w ie . c a ʔ . k a ʔ . n i ʔ . ɓ aa t
+  len= 78  ហរិហរិន្ទ្រាធាតាធិបតី	h a ʔ . r i ʔ . h a ʔ . r ɨ n . t r ie . th ie . ɗ aa . th i ʔ . p a ʔ . ɗ ə j
+  len= 74  អាស៊ីតដេអុកស៊ីរីបូនុយក្លេអ៊ិច	ʔ aa . s ii t . ɗ ee . ʔ o k . s ii . r ii . ɓ oo . n u j . k l ee . ʔ ɨ c
+  len= 73  មតសរីរច្ឆេទនសាស្ត្រ	m ea ʔ . t a ʔ . s a ʔ . r ə j . r a c . ch ee . t ea ʔ . n ea ʔ . s aa h
+  len= 70  អាគន្តុកប្បដិសណ្ឋារៈ	ʔ aa . k oa n . t o ʔ . k a p . p a ʔ . ɗ e ʔ . s ɑ n . th aa . r ea ʔ
+  len= 69  បដិដុល្លារូបនីយកម្ម	p a ʔ . ɗ e ʔ . ɗ o l . l aa . r uu p . p a ʔ . n ii . j ea ʔ . k a m
+  len= 69  បដិភាណប្បដិសម្ភិទា	p a ʔ . ɗ e ʔ . ph ie . n a p . p a ʔ . ɗ e ʔ . s a m . ph i ʔ . t ie
+  len= 68  ត្រីភូវនាទិត្យវរ្ម័ន	t r ə j . ph uu . w ea ʔ . n ie . t ɨ t . t j a ʔ . w ea ʔ . r m a n
+  len= 68  ប្រជាធិបតូបនីយកម្ម	p r ɑ . c ie . th i ʔ . p a ʔ . t oo . p a ʔ . n ii . j ea ʔ . k a m
+  len= 67  សមូហភាវូបនីយកម្ម	s a ʔ . m oo . h a ʔ . ph ie . w uu . p a ʔ . n ii . j ea ʔ . k a m
+  len= 67  អន្តរជាតូបនីយកម្ម	ʔ ɑ n . t a ʔ . r a ʔ . c ie . t oo . p a ʔ . n ii . j ea ʔ . k a m
+  len= 66  ដេអុកស៊ីរីបូនុយក្លេអូស៊ីត	ɗ ee . ʔ o k . s ii . r ii . ɓ oo . n u j . k l ee . ʔ oo . s ii t
+  len= 66  ផេណុកស៊ីមេទីលប៉េនីស៊ីលីន	ph ee . n o k . s ii . m ee . t ii l . p ee . n ii . s ii . l ii n
+  len= 66  អាសេទីលឌីអ៊ីដ្រូកូដេអ៊ីន	ʔ aa . s ee . t ii l . ɗ ii . ʔ ii . ɗ r oo . k oo . ɗ ee . ʔ ii n
+  len= 65  ខលុបច្ឆាភត្តិកង្គៈ	kh a ʔ . l o ʔ . p a c . ch aa . ph oa t . t e ʔ . k a ŋ . k ea ʔ
+  len= 65  រ៉ាសេម៉ាតដឺមេតំហ្វេតាមីន	r aa . s ee . m aa t . ɗ əə . m ee . t ɑ m . f ee . t aa . m ii n
+  len= 65  លក្ខណវិនយប្បញ្ញត្តិ	l ea k . kh a ʔ . n a ʔ . w i ʔ . n ea ʔ . j ea ʔ . p a ɲ . ɲ a t
+  len= 64  តេត្រាហាយដ្រូខានណាប៊ីណល	t ee . t r aa . h aa j . ɗ r oo . kh aa n . n aa . ɓ ii . n ɑɑ l
+  len= 63  កច្ចាយនូបត្ថម្ភកា	k a c . c aa j . j a ʔ . n uu . p a t . th ɑ m . ph ea ʔ . k aa
+  len= 63  ទំនើបភាវូប្បនីយកម្ម	t u m . n əə p . ph ie . w uu p . p a ʔ . n ii . j ea ʔ . k a m
+  len= 63  ធម្មសង្គាហកត្ថេរ	th oa m . m ea ʔ . s ɑ ŋ . k ie . h a ʔ . k a t . th ee . r a ʔ
+  len= 63  បត្តានុមោទនាមយៈ	p a t . t aa . n u ʔ . m oo t . t ea ʔ . n ie . m ea ʔ . j ea ʔ
+  len= 63  សត្កប្បករណាភិធម្ម	s a t . k a p . p a ʔ . k a ʔ . r a ʔ . n aa . ph i ʔ . th oa m
+  len= 63  សត្តប្បករណាភិធម្ម	s a t . t a p . p a ʔ . k a ʔ . r a ʔ . n aa . ph i ʔ . th oa m
+  len= 63  អគ្គលេខាធិការដ្ឋាន	ʔ a k . k ea ʔ . l ee . kh aa . th i ʔ . k aa . r a t . th aa n
+  len= 63  អតិថិប្បដិសណ្ឋារ	ʔ a ʔ . t e ʔ . th ə p . p a ʔ . ɗ e ʔ . s ɑ n . th aa . r ea ʔ
+  len= 63  អហេតុកប្បដិសន្ធិ	ʔ a ʔ . h ae t . t o ʔ . k a p . p a ʔ . ɗ e ʔ . s ɑ n . th i ʔ
+  len= 62  internetdownloadmanager	ʔ ii n . th əə . n ɛɛ t . ɗ ao n . l oo t . m ɛɛ . n ɛɛ . c əə
+  len= 62  កច្ចាយនូបត្ថម្ភកៈ	k a c . c aa . j a ʔ . n uu . p a t . th ɑ m . ph ea ʔ . k a ʔ
+  len= 62  តេត្រាអ៊ីដ្រូកានណាប៊ីនណុល	t ee . t r aa . ʔ ii . ɗ r oo . k aa n . n aa . ɓ ii n . n o l
+  len= 62  អនុរដ្ឋលេខាធិការ	ʔ a ʔ . n u ʔ . r oa t . th a ʔ . l ee . kh aa . th i ʔ . k aa
+  len= 62  អាទរប្បដិសណ្ឋារ	ʔ aa . t ea ʔ . r ɔ p . p a ʔ . ɗ e ʔ . s ɑ n . th aa . r ea ʔ
+  len= 62  អែដរេណូខូធីខូត្រូពីក	ʔ ae t . r ee . n oo . kh oo . th ii . kh oo . t r oo . p ii k
+  len= 61  បិណ្ឌបាតចារិកវត្ត	ɓ ə n . ɗ ea ʔ . p aa . t a ʔ . c aa . r e ʔ . k a ʔ . w oa t
+  len= 61  រាជាយុត្តកាធិបតី	r ie c . c ie . j u t . t a ʔ . k aa . th ɨ p . p a ʔ . ɗ ə j
+  len= 61  លោហិតបក្ខន្ទិកាពាធ	l oo . h ə t . t a ʔ . p a k . kh a n . t i ʔ . k aa . p ie t
+  len= 61  អនុប្រធានាធិបតី	ʔ a ʔ . n u ʔ . p r ɑ . th ie . n ie . th ɨ p . p a ʔ . ɗ ə j
+  len= 61  អភិសមាចារិកវត្ត	ʔ a ʔ . ph i ʔ . s a ʔ . m aa . c aa . r e ʔ . k a ʔ . w oa t
+  len= 61  អាចរិយប្បាចរិយ	ʔ aa . c a ʔ . r i ʔ . j ea ʔ . ɓ aa . c a ʔ . r i ʔ . j ea ʔ
+
+========================================================================
+Summary
+========================================================================
+  Unique words:             69168
+  Distinct phoneme tokens:  32
+  Exact duplicates:         0
+  Words with >3 variants:  0
+  Whitespace issues:        0
+  Stress-only disagree:     0
+  Rare phonemes:            0
+  Unknown phonemes:         0
