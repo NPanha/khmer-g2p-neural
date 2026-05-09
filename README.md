@@ -363,5 +363,4 @@ scripts/
 └── live_test.py             # interactive spot-check against a running model
 
 tests/                        # pytest suite
-```#   k h m e r - g 2 p - n e u r a l  
- 
+```
