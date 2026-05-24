@@ -7,8 +7,6 @@ The lexicon uses ASCII-digraph notation for aspiration (`ph`, `th`, `kh`) and
 doubled vowels for length (`ɑɑ`, `aa`, `oo`), so target tokens are single
 characters. No FST dependency — pure PyTorch.
 
----
-
 ## Pipeline overview
 
 ```
@@ -16,8 +14,6 @@ Install → Prepare data → (Pretrain) → Train → Fine-tune → Predict / Ev
 ```
 
 Steps in parentheses are optional but recommended when you have extra data.
-
----
 
 ## 1. Requirements
 
@@ -27,14 +23,12 @@ Steps in parentheses are optional but recommended when you have extra data.
 
 GPU is optional but strongly recommended for training.
 
----
-
 ## 2. Install
 
 Clone the repo and install in editable mode with all extras:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/NPanha/khmer-g2p-neural.git
 cd khmer-g2p-neural
 pip install -e ".[notebook,dev]"
 ```
@@ -48,8 +42,6 @@ Verify the install:
 python -c "import khmer_g2p; print(khmer_g2p.__version__)"
 khmer-g2p-train --help
 ```
-
----
 
 ## 3. Prepare data
 
@@ -92,8 +84,6 @@ python scripts/clean_lexicon.py data/lexicon.tsv --out data/lexicon.clean.tsv --
 
 Use `data/lexicon.clean.tsv` for training if you ran the cleaner.
 
----
-
 ## 4. (Optional) Pretrain the encoder
 
 If you have a raw Khmer text corpus, masked-character pretraining of the
@@ -121,8 +111,6 @@ Key options:
 | `--epochs` | 10 | Training epochs |
 | `--d-model` | 384 | Must match supervised training |
 | `--enc-layers` | 6 | Must match supervised training |
-
----
 
 ## 5. Train
 
@@ -215,8 +203,6 @@ khmer-g2p-train --data data/lexicon.tsv --out checkpoints_baseline \
     --warmup 500 --weight-decay 1e-5 --patience 5
 ```
 
----
-
 ## 6. Fine-tune
 
 Fine-tuning resumes from a trained checkpoint with a flat low LR, reduced
@@ -242,8 +228,6 @@ Key fine-tuning flags:
 | `--epochs` | 20 | Max fine-tune epochs |
 | `--patience` | 6 | Early-stop patience |
 | `--ctc-weight` | 0.0 | CTC off by default; set > 0 to keep it |
-
----
 
 ## 7. Predict
 
@@ -307,8 +291,6 @@ print(g2p.convert("ខ្មែរ"))
 print(g2p.last_source)   # 'lexicon' or 'model'
 ```
 
----
-
 ## 8. Evaluate (notebook)
 
 `khmer_g2p_inference.ipynb` walks through the full evaluation workflow after
@@ -322,8 +304,6 @@ jupyter notebook khmer_g2p_inference.ipynb
 
 The notebook anchors itself to the repo root automatically — open it from
 any working directory.
-
----
 
 ## 9. Tests
 
