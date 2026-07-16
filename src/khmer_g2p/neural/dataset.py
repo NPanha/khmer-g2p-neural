@@ -71,8 +71,14 @@ def split_pairs(
     rng.shuffle(words)
 
     n = len(words)
-    n_val = max(1, int(n * val_frac)) if n > 20 else 0
-    n_test = max(1, int(n * test_frac)) if n > 20 else 0
+    if n >= 3:
+        n_val = max(1, int(n * val_frac)) if val_frac > 0 else 0
+        n_test = max(1, int(n * test_frac)) if test_frac > 0 else 0
+        if n_val + n_test >= n:
+            n_test = max(0, n - n_val - 1)
+    else:
+        n_val = 0
+        n_test = 0
     n_train = n - n_val - n_test
 
     train_words = words[:n_train]

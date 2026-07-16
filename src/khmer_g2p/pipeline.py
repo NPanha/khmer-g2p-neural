@@ -106,7 +106,7 @@ class KhmerG2P:
         device: Optional[str] = None,
         max_len: int = 128,
         config: Optional[PipelineConfig] = None,
-    ) -> "KhmerG2PPipeline":
+    ) -> "KhmerG2P":
         """Build a pipeline from a checkpoint and TSV lexicon."""
         from khmer_g2p.hybrid import HybridG2P
         from khmer_g2p.neural.infer import NeuralG2P
@@ -239,3 +239,9 @@ class KhmerG2P:
             f"word_boundary={cfg.word_boundary!r}, "
             f"hit_rate={self.hit_rate:.3f})"
         )
+
+
+# Backwards-compatible/public name used by README examples.
+KhmerG2PPipeline = KhmerG2P
+
+__all__ = ["KhmerG2P", "KhmerG2PPipeline", "PipelineConfig"]

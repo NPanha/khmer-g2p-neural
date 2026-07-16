@@ -60,7 +60,13 @@ class NeuralG2P:
         model.tie_weights_if_configured()
         src_vocab = Vocab.from_dict(payload["src_vocab"])
         tgt_vocab = Vocab.from_dict(payload["tgt_vocab"])
-        return cls(model, src_vocab, tgt_vocab, device=device_t, max_len=max_len)
+        return cls(
+            model,
+            src_vocab,
+            tgt_vocab,
+            device=device_t,
+            max_len=min(max_len, cfg.max_len),
+        )
 
     # --- Public API ----------------------------------------------------------
 

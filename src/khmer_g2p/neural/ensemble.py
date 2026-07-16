@@ -46,7 +46,7 @@ class EnsembleG2P:
     def __init__(
         self,
         members: Sequence[NeuralG2P],
-        max_len: int = 128,
+        max_len: Optional[int] = None,
     ) -> None:
         if len(members) < 2:
             raise ValueError("ensemble needs at least 2 members")
@@ -68,7 +68,7 @@ class EnsembleG2P:
         self.src_vocab = ref.src_vocab
         self.tgt_vocab = ref.tgt_vocab
         self.device = ref.device
-        self.max_len = max_len
+        self.max_len = max_len if max_len is not None else min(m.max_len for m in self.members)
 
     # --- Construction -------------------------------------------------------
 

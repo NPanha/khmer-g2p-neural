@@ -1,11 +1,13 @@
 # khmer-g2p-neural
 
-Neural (Transformer) grapheme-to-phoneme conversion for Khmer, producing IPA.
+Neural (Transformer) grapheme-to-phoneme conversion for Khmer.
 
 A character-level encoder-decoder trained on a Khmer word → phoneme lexicon.
-The lexicon uses ASCII-digraph notation for aspiration (`ph`, `th`, `kh`) and
-doubled vowels for length (`ɑɑ`, `aa`, `oo`), so target tokens are single
-characters. No FST dependency — pure PyTorch.
+The current lexicon uses a Khmer word plus a space-separated pronunciation
+string. It is IPA-based, but uses project-specific ASCII-friendly units for
+some sounds: aspiration is written as digraphs (`ph`, `th`, `kh`, `ch`) and
+long vowels are written by doubling (`aa`, `ii`, `oo`, `ɑɑ`, `əə`, ...).
+No FST dependency — pure PyTorch.
 
 ## Pipeline overview
 
@@ -47,16 +49,39 @@ khmer-g2p-train --help
 
 ### Lexicon format
 
-The lexicon is a two-column TSV: Khmer word and its IPA pronunciation,
-one pair per line. A header row is allowed and will be skipped automatically.
+The lexicon is a UTF-8 two-column TSV: Khmer word and pronunciation, one pair
+per line. A header row such as `word<TAB>ipa` is allowed and will be skipped
+automatically.
+
+Each pronunciation is written as space-separated phoneme units. Use `.` as a
+syllable boundary inside the pronunciation when needed.
 
 ```
-ខ្មែរ	kʰ m ae r
-ភាសា	pʰ ie s aa
-កម្ពុជា	k ɑm p uː c ie
+ខ្មែរ	kh m ae r
+ភាសា	ph ie s aa
+កម្ពុជា	k ɑm p u c ie
 ```
 
-The bundled lexicon lives at `data/lexicon.tsv` and is ready to use.
+Expected notation in this project:
+
+| Type | Examples |
+|------|----------|
+| Aspirated consonants | `ph`, `th`, `kh`, `ch` |
+| Long vowels | `aa`, `ii`, `oo`, `ee`, `uu`, `ɑɑ`, `əə`, `ɔɔ`, `ɛɛ`, `ɨɨ` |
+| Vowel clusters / diphthongs | `ie`, `ea`, `oa`, `ae`, `uə`, `iə`, `ao`, `aə`, `ɨə`, `ɛə` |
+| Separators | space between phoneme units, `.` between syllables |
+
+The training commands expect the full lexicon at `data/lexicon.tsv`. This file
+is data, not model code; make sure it exists locally before training.
+
+The latest saved audit for this project reported:
+
+- 69,177 rows loaded
+- 69,168 unique words
+- 32 distinct target tokens after tokenizer processing
+- 0 duplicate rows
+- 0 unknown phonemes
+- 0 whitespace issues
 
 ### Audit the lexicon
 
@@ -71,15 +96,18 @@ python scripts/audit_lexicon.py data/lexicon.tsv --top 40 --out audit.txt
 
 ### Clean the lexicon
 
-Fix the issues the audit finds — trailing punctuation, `g`/`ɡ` confusion, and
-duplicate rows:
+Fix the issues the audit finds — trailing punctuation, `g`/`ɡ` confusion,
+empty pronunciation fields, standalone vowel/punctuation entries, and duplicate
+rows:
 
 ```bash
 # dry-run first to preview changes
 python scripts/clean_lexicon.py data/lexicon.tsv --dry-run
 
 # apply and write cleaned file
-python scripts/clean_lexicon.py data/lexicon.tsv --out data/lexicon.clean.tsv --dedupe
+python scripts/clean_lexicon.py data/lexicon.tsv \
+    --out data/lexicon.clean.tsv \
+    --drop-empty-ipa --drop-vowel-punct --dedupe
 ```
 
 Use `data/lexicon.clean.tsv` for training if you ran the cleaner.
@@ -151,7 +179,7 @@ khmer-g2p-train --data data/lexicon.tsv --out checkpoints_v04 \
 | `--dec-layers` | 3 | Decoder layers |
 | `--ffn` | 1536 | Feed-forward inner size |
 | `--dropout` | 0.3 | Dropout probability |
-| `--tgt-tokenizer` | `phoneme` | `phoneme` glues ʰ/ː modifiers; `char` treats each Unicode codepoint separately |
+| `--tgt-tokenizer` | `phoneme` | Target tokenizer. With this lexicon, space-separated units like `kh`, `aa`, and `ie` are preserved in the raw pronunciation string while training still uses the project tokenizer/vocab saved in the checkpoint. |
 | `--ctc` / `--no-ctc` | on | CTC auxiliary loss on encoder |
 | `--ctc-weight` | 0.3 | Weight of CTC in total loss |
 | `--epochs` | 80 | Max epochs |
@@ -189,7 +217,7 @@ checkpoints_v04/
 ├── best.pt           # best checkpoint by val PER  ← use this for inference
 ├── last.pt           # final epoch checkpoint
 ├── src_vocab.json    # source character vocabulary
-├── tgt_vocab.json    # target phoneme vocabulary
+├── tgt_vocab.json    # target pronunciation vocabulary
 ├── history.json      # per-epoch metrics (loss, PER, WER, LR)
 └── test_metrics.json # final test-set PER / WER
 ```
@@ -293,13 +321,13 @@ print(g2p.last_source)   # 'lexicon' or 'model'
 
 ## 8. Evaluate (notebook)
 
-`khmer_g2p_inference.ipynb` walks through the full evaluation workflow after
+`examples/inference_evaluation.ipynb` walks through the full evaluation workflow after
 training: load checkpoint, single-word and batch inference, beam search
 comparison, PER/WER on the test split, training history plot, lexicon
 hit-rate stats, and error analysis of worst predictions.
 
 ```bash
-jupyter notebook khmer_g2p_inference.ipynb
+jupyter notebook examples/inference_evaluation.ipynb
 ```
 
 The notebook anchors itself to the repo root automatically — open it from
@@ -323,7 +351,7 @@ src/khmer_g2p/
 ├── segmenter.py             # greedy longest-match word segmenter
 ├── hybrid.py                # lexicon-first G2P with neural fallback
 └── neural/
-    ├── phoneme_tokenizer.py # phoneme-level tokenizer (glues ʰ/ː modifiers)
+    ├── phoneme_tokenizer.py # target pronunciation tokenizer + inventory checks
     ├── vocab.py             # char / phoneme vocab
     ├── dataset.py           # PyTorch Dataset + collate
     ├── model.py             # Transformer encoder-decoder + CTC/aux heads
@@ -341,6 +369,11 @@ scripts/
 ├── audit_lexicon.py         # data-quality report
 ├── clean_lexicon.py         # remove trailing junk, normalize g↔ɡ
 └── live_test.py             # interactive spot-check against a running model
+
+examples/
+├── inference_evaluation.ipynb      # checkpoint inference + evaluation workflow
+├── pipeline_demo.ipynb             # sentence-level pipeline demo
+└── colab_training_exploration.ipynb # Colab-oriented training/exploration notes
 
 tests/                        # pytest suite
 ```

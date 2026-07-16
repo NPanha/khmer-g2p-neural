@@ -55,7 +55,7 @@ def test_length_penalty_changes_beam_ranking_in_constructed_case():
     # So the test asserts the ordering CAN flip when we make the long beam's
     # raw log-prob just barely worse, by tuning alpha.
     a = (-1.0, 3)   # raw, length
-    b = (-1.6, 8)   # raw, length
+    b = (-1.3, 8)   # raw, length
     f = NeuralG2P._length_norm
 
     # With alpha=0: pure raw log-prob → a wins.

@@ -33,3 +33,6 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 khmer_g2p = ["../data/*.tsv"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
